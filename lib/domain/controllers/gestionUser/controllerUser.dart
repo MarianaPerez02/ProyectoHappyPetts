@@ -31,9 +31,13 @@ class ControlUserAuth extends GetxController {
       _mensaje.value = "Datos Ingresas Incorrectos";
     } else {
       _mensaje.value = "Proceso Realizado Correctamente";
+      if (respuesta.user != null) {
       _usuario.value = respuesta;
 
       guardaLocal();
+    } else {
+      _mensaje.value = "El usuario es nulo";
+    }
     }
   }
 
@@ -49,7 +53,9 @@ class ControlUserAuth extends GetxController {
     _passwdLocal.value = datosLocal.read('passwd');
     print(_emailLocal.value);
   }
-
+ Future<void> resetPassword(String email) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
   dynamic get passwdLocal => _passwdLocal.value;
   dynamic get emailLocal => _emailLocal.value;
   dynamic get estadoUser => _response.value;

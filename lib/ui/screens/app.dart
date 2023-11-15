@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proyectomovil/ui/screens/home/panel_De_Control.dart';
+import 'package:proyectomovil/ui/screens/gestionUser/register.dart';
+import 'package:proyectomovil/ui/screens/gestionUser/register.dart';
+import 'package:proyectomovil/ui/screens/panelDeControl/panel_De_Control.dart';
 import 'package:proyectomovil/ui/screens/home/home.dart';
 
 class MyApp extends StatelessWidget {
@@ -17,8 +19,8 @@ class MyApp extends StatelessWidget {
       ),
       home:const Home(),
       routes: {
-        '/pacientes':(context) => const PanelDeControl(),
-        
+        '/panelDeControl':(context) => const PanelDeControl(),
+        '/register': (context) =>  Register(),
       },
     );
   }

@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/IngresarCuadroClinicoParte1.dart';
+import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/ingresarDatosPropietario.dart';
 
-
-class IngresarDatosPropietario extends StatefulWidget {
-  const IngresarDatosPropietario({super.key});
-
+class IngresarPaciente extends StatefulWidget {
   @override
-  State<IngresarDatosPropietario> createState() => IngresarDatosPropietarioState();
+  _IngresarPacienteState createState() => _IngresarPacienteState();
 }
 
-class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
-
-  final TextEditingController nombreController = TextEditingController();
-  final TextEditingController apellidoController = TextEditingController();
-  final TextEditingController identificacionController = TextEditingController();
-  final TextEditingController direccionController = TextEditingController();
-  final TextEditingController telefonoController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-
+class _IngresarPacienteState extends State<IngresarPaciente> {
+  final TextEditingController nombrePacienteController =TextEditingController();
+  final TextEditingController especieController = TextEditingController();
+  final TextEditingController razaController = TextEditingController();
+  final TextEditingController edadController = TextEditingController();
+  final TextEditingController sexoController = TextEditingController();
+  final TextEditingController pesoController = TextEditingController();
+  final TextEditingController fechaIngresoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-            color: Colors.black), // Cambiar el color de la flecha de retroceso
+        iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Image.asset(
-          'assets/image/6.png', // Asegúrate de reemplazar 'assets/imagen3.png' con la ruta de tu imagen.
+          'assets/image/6.png',
           fit: BoxFit.contain,
           height: 100,
         ),
@@ -37,13 +32,13 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Container(
               padding: const EdgeInsets.only(left: 10),
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children:[
+                children: <Widget>[
                   Container(
                     color: Colors.red,
                     height: 2,
@@ -55,14 +50,14 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Datos del Propietario',
+                    'Datos del Paciente',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),
                   TextField(
-                    controller: nombreController,
+                    controller: nombrePacienteController,
                     decoration: InputDecoration(
-                      labelText: 'Nombre',
+                      labelText: 'Nombre del Paciente',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -73,9 +68,10 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: apellidoController,
+                    controller: especieController,
                     decoration: InputDecoration(
-                      labelText: 'Apellido',
+                      labelText:
+                          'Especie (Perro, Gato, Conejo, Vaca o Tortuga)',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -86,9 +82,9 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: identificacionController,
+                    controller: razaController,
                     decoration: InputDecoration(
-                      labelText: 'Identificación',
+                      labelText: 'Raza',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -99,9 +95,9 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: direccionController,
+                    controller: edadController,
                     decoration: InputDecoration(
-                      labelText: 'Dirección',
+                      labelText: 'Edad',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -112,9 +108,9 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: telefonoController,
+                    controller: sexoController,
                     decoration: InputDecoration(
-                      labelText: 'Teléfono',
+                      labelText: 'Sexo',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -125,9 +121,22 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: emailController,
+                    controller: pesoController,
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Peso en kg',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey.shade400,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: fechaIngresoController,
+                    decoration: InputDecoration(
+                      labelText: 'Fecha de Ingreso (dd/mm/yyyy)',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -139,25 +148,26 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      final nombre = nombreController.text;
-                      final apellido = apellidoController.text;
-                      final identificacion = identificacionController.text;
-                      final direccion = direccionController.text;
-                      final telefono = telefonoController.text;
-                      final email = emailController.text;
+                      final nombrePaciente = nombrePacienteController.text;
+                      final especie = especieController.text;
+                      final raza = razaController.text;
+                      final edad = edadController.text;
+                      final sexo = sexoController.text;
+                      final peso = pesoController.text;
+                      final fechaIngreso = fechaIngresoController.text;
 
-                      print('Nombre: $nombre');
-                      print('Apellido: $apellido');
-                      print('Identificación: $identificacion');
-                      print('Dirección: $direccion');
-                      print('Teléfono: $telefono');
-                      print('Email: $email');
+                      print('Nombre del Paciente: $nombrePaciente');
+                      print('Especie: $especie');
+                      print('Raza: $raza');
+                      print('Edad: $edad');
+                      print('Sexo: $sexo');
+                      print('Peso: $peso');
+                      print('Fecha de Ingreso: $fechaIngreso');
 
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                const IngresarDatosCuadroClinicoParte1()),
+                            builder: (context) => const IngresarDatosPropietario()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -167,8 +177,7 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                           horizontal: 60,
                           vertical: 20), // Ajusta el tamaño del botón
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              30)), // Hace que los bordes del botón sean redondeados
+                          borderRadius: BorderRadius.circular(30)), // Hace que los bordes del botón sean redondeados
                     ),
                     child: const Text('Continuar', style: TextStyle(fontSize: 20)),
                   ),
@@ -181,4 +190,3 @@ class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
     );
   }
 }
-

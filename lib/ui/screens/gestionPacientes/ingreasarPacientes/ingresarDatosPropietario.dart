@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/ui/screens/home/panel_De_Control.dart';
+import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/IngresarCuadroClinicoParte1.dart';
 
 
-class IngresarMedicamento extends StatefulWidget {
-  const IngresarMedicamento({super.key});
+class IngresarDatosPropietario extends StatefulWidget {
+  const IngresarDatosPropietario({super.key});
 
   @override
-  State<IngresarMedicamento> createState() => IngresarMedicamentoState();
+  State<IngresarDatosPropietario> createState() => IngresarDatosPropietarioState();
 }
 
-class IngresarMedicamentoState extends State<IngresarMedicamento> {
+class IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
 
   final TextEditingController nombreController = TextEditingController();
-  final TextEditingController cantidadController = TextEditingController();
-  final TextEditingController loteController = TextEditingController();
-  final TextEditingController fechaFabricacionController = TextEditingController();
-  final TextEditingController fechaCaducidadController = TextEditingController();
+  final TextEditingController apellidoController = TextEditingController();
+  final TextEditingController identificacionController = TextEditingController();
+  final TextEditingController direccionController = TextEditingController();
+  final TextEditingController telefonoController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,28 +37,28 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Container(
               padding: const EdgeInsets.only(left: 10),
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children:[
                   Container(
                     color: Colors.red,
                     height: 2,
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Ingresar Medicamento',
+                    'Ingresar Paciente',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Datos del Medicamento',
+                    'Datos del Propietario',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 30.0),
+                  const SizedBox(height: 20),
                   TextField(
                     controller: nombreController,
                     decoration: InputDecoration(
@@ -69,25 +71,11 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 16),
                   TextField(
-                    controller: cantidadController,
+                    controller: apellidoController,
                     decoration: InputDecoration(
-                      labelText: 'Cantidad del Medicamento',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                  const SizedBox(height: 16.0),
-                  TextField(
-                    controller: loteController,
-                    decoration: InputDecoration(
-                      labelText: 'Lote del Medicamento',
+                      labelText: 'Apellido',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -96,11 +84,11 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 16),
                   TextField(
-                    controller: fechaFabricacionController,
+                    controller: identificacionController,
                     decoration: InputDecoration(
-                      labelText: 'Fecha de Fabricación (dd/mm/yyyy)',
+                      labelText: 'Identificación',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -109,11 +97,11 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 16),
                   TextField(
-                    controller: fechaCaducidadController,
+                    controller: direccionController,
                     decoration: InputDecoration(
-                      labelText: 'Fecha de Caducidad (dd/mm/yyyy)',
+                      labelText: 'Dirección',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -122,27 +110,54 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: telefonoController,
+                    decoration: InputDecoration(
+                      labelText: 'Teléfono',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey.shade400,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey.shade400,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
                       final nombre = nombreController.text;
-                      final cantidad = cantidadController.text;
-                      final lote = loteController.text;
-                      final fechaFabricacion = fechaFabricacionController.text;
-                      final fechaCaducidad = fechaCaducidadController.text;
+                      final apellido = apellidoController.text;
+                      final identificacion = identificacionController.text;
+                      final direccion = direccionController.text;
+                      final telefono = telefonoController.text;
+                      final email = emailController.text;
 
                       print('Nombre: $nombre');
-                      print('Cantidad: $cantidad');
-                      print('Lote: $lote');
-                      print('Fecha de Fabricación: $fechaFabricacion');
-                      print('Fecha de Caducidad: $fechaCaducidad');
-
+                      print('Apellido: $apellido');
+                      print('Identificación: $identificacion');
+                      print('Dirección: $direccion');
+                      print('Teléfono: $telefono');
+                      print('Email: $email');
 
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const PanelDeControl(),
-                        ),
+                            builder: (context) =>
+                                const IngresarDatosCuadroClinicoParte1()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -155,7 +170,7 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
                           borderRadius: BorderRadius.circular(
                               30)), // Hace que los bordes del botón sean redondeados
                     ),
-                    child: const Text('Guardar', style: TextStyle(fontSize: 20)),
+                    child: const Text('Continuar', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),

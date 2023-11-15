@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/ui/screens/gestionPacientes/ingresarDatosPropietario.dart';
+import 'package:proyectomovil/ui/screens/panelDeControl/panel_De_Control.dart';
 
-class IngresarPaciente extends StatefulWidget {
+
+class IngresarMedicamento extends StatefulWidget {
+  const IngresarMedicamento({super.key});
+
   @override
-  _IngresarPacienteState createState() => _IngresarPacienteState();
+  State<IngresarMedicamento> createState() => IngresarMedicamentoState();
 }
 
-class _IngresarPacienteState extends State<IngresarPaciente> {
-  final TextEditingController nombrePacienteController =TextEditingController();
-  final TextEditingController especieController = TextEditingController();
-  final TextEditingController razaController = TextEditingController();
-  final TextEditingController edadController = TextEditingController();
-  final TextEditingController sexoController = TextEditingController();
-  final TextEditingController pesoController = TextEditingController();
-  final TextEditingController fechaIngresoController = TextEditingController();
+class IngresarMedicamentoState extends State<IngresarMedicamento> {
+
+  final TextEditingController nombreController = TextEditingController();
+  final TextEditingController cantidadController = TextEditingController();
+  final TextEditingController loteController = TextEditingController();
+  final TextEditingController fechaFabricacionController = TextEditingController();
+  final TextEditingController fechaCaducidadController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(
+            color: Colors.black), // Cambiar el color de la flecha de retroceso
         backgroundColor: Colors.white,
         title: Image.asset(
-          'assets/image/6.png',
+          'assets/image/6.png', // Asegúrate de reemplazar 'assets/imagen3.png' con la ruta de tu imagen.
           fit: BoxFit.contain,
           height: 100,
         ),
@@ -45,19 +48,19 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Ingresar Paciente',
+                    'Ingresar Medicamento',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Datos del Paciente',
+                    'Datos del Medicamento',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30.0),
                   TextField(
-                    controller: nombrePacienteController,
+                    controller: nombreController,
                     decoration: InputDecoration(
-                      labelText: 'Nombre del Paciente',
+                      labelText: 'Nombre',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -66,12 +69,25 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 16.0),
                   TextField(
-                    controller: especieController,
+                    controller: cantidadController,
                     decoration: InputDecoration(
-                      labelText:
-                          'Especie (Perro, Gato, Conejo, Vaca o Tortuga)',
+                      labelText: 'Cantidad del Medicamento',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey.shade400,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(height: 16.0),
+                  TextField(
+                    controller: loteController,
+                    decoration: InputDecoration(
+                      labelText: 'Lote del Medicamento',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -80,11 +96,11 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 16.0),
                   TextField(
-                    controller: razaController,
+                    controller: fechaFabricacionController,
                     decoration: InputDecoration(
-                      labelText: 'Raza',
+                      labelText: 'Fecha de Fabricación (dd/mm/yyyy)',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -93,11 +109,11 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 16.0),
                   TextField(
-                    controller: edadController,
+                    controller: fechaCaducidadController,
                     decoration: InputDecoration(
-                      labelText: 'Edad',
+                      labelText: 'Fecha de Caducidad (dd/mm/yyyy)',
                       labelStyle: const TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.grey.shade400,
@@ -106,68 +122,27 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    controller: sexoController,
-                    decoration: InputDecoration(
-                      labelText: 'Sexo',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    controller: pesoController,
-                    decoration: InputDecoration(
-                      labelText: 'Peso en kg',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    controller: fechaIngresoController,
-                    decoration: InputDecoration(
-                      labelText: 'Fecha de Ingreso (dd/mm/yyyy)',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
-                      final nombrePaciente = nombrePacienteController.text;
-                      final especie = especieController.text;
-                      final raza = razaController.text;
-                      final edad = edadController.text;
-                      final sexo = sexoController.text;
-                      final peso = pesoController.text;
-                      final fechaIngreso = fechaIngresoController.text;
+                      final nombre = nombreController.text;
+                      final cantidad = cantidadController.text;
+                      final lote = loteController.text;
+                      final fechaFabricacion = fechaFabricacionController.text;
+                      final fechaCaducidad = fechaCaducidadController.text;
 
-                      print('Nombre del Paciente: $nombrePaciente');
-                      print('Especie: $especie');
-                      print('Raza: $raza');
-                      print('Edad: $edad');
-                      print('Sexo: $sexo');
-                      print('Peso: $peso');
-                      print('Fecha de Ingreso: $fechaIngreso');
+                      print('Nombre: $nombre');
+                      print('Cantidad: $cantidad');
+                      print('Lote: $lote');
+                      print('Fecha de Fabricación: $fechaFabricacion');
+                      print('Fecha de Caducidad: $fechaCaducidad');
+
 
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IngresarDatosPropietario()),
+                          builder: (context) => const PanelDeControl(),
+                        ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -177,9 +152,10 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
                           horizontal: 60,
                           vertical: 20), // Ajusta el tamaño del botón
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)), // Hace que los bordes del botón sean redondeados
+                          borderRadius: BorderRadius.circular(
+                              30)), // Hace que los bordes del botón sean redondeados
                     ),
-                    child: const Text('Continuar', style: TextStyle(fontSize: 20)),
+                    child: const Text('Guardar', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),
@@ -190,3 +166,4 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
     );
   }
 }
+

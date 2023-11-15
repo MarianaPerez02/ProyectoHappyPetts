@@ -1,52 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proyectomovil/data/services/gestionUser/peticionesfirebaseuser.dart';
-import 'package:proyectomovil/ui/screens/home/home.dart';
-import 'package:proyectomovil/ui/screens/gestionUser/registrar.dart';
+import 'package:proyectomovil/domain/controllers/gestionUser/controlleruser.dart';
+import 'package:proyectomovil/ui/screens/gestionUser/recuperarContrasena.dart';
 
-
-class Login extends StatefulWidget {
-  const Login({super.key});
-
-  @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
+class Login extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  var usuarios;
-  void ingreso() {
-    Peticioneslogin.ingresarEmail(emailController.text, passwordController.text)
-        .then((user) {
-      setState(() {
-        print(user);
-        if (user == '1' || user == '2') {
-          usuarios = 'Correo No Existe o Contraseña Invalida';
-        } else {
-          try {
-            usuarios = user.user.email;
-            print("has iniado correctamente");
-            Get.toNamed("/pacientes");
-          } catch (e) {
-            e.printError();
-          }
-        }
-      });
-    });
-  }
-
-  String message = '';
-  void _navigateToRegistration() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const RegistrationScreen()),
-    );
-  }
+  Login({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
+    ControlUserAuth cu = Get.find();
+
     const double inputSpacing = 20.0;
     return Scaffold(
       body: SingleChildScrollView(
@@ -77,6 +44,16 @@ class _LoginState extends State<Login> {
                       width: double.infinity,
                       child: Column(
                         children: [
+                          const Text(
+                            'INICIAR SESION',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,  // Aumenta el tamaño de la fuente aquí
+                            ),
+                          ),
+                          const SizedBox(height: 30),
                           TextField(
                             controller: emailController,
                             decoration: InputDecoration(
@@ -89,7 +66,7 @@ class _LoginState extends State<Login> {
                             ),
                             style: const TextStyle(fontSize: 15),
                           ),
-                          const SizedBox(height: 30), 
+                          const SizedBox(height: 30),
                           //
                           TextField(
                             controller: passwordController,
@@ -117,7 +94,7 @@ class _LoginState extends State<Login> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // Get.to(const RecuperarContrasena());
+                                   Get.to(RecuperarContrasena());
                                 },
                                 child: Text(
                                   'Click',
@@ -130,9 +107,19 @@ class _LoginState extends State<Login> {
                           const SizedBox(height: inputSpacing),
                           ElevatedButton(
                             onPressed: () {
-                              print(emailController.text);
-                              print(passwordController.text);
-                              ingreso();
+                              cu
+                                  .ingresarUser(emailController.text,
+                                      passwordController.text)
+                                  .then((value) {
+                                if (cu.userValido == null) {
+                                  Get.snackbar("Usuarios", cu.mensajesUser,
+                                      duration: const Duration(seconds: 4),
+                                      backgroundColor: Colors.amber);
+                                } else {
+                                  Get.offAllNamed('/panelDeControl');
+                                }
+                              });
+
                               emailController.clear();
                               passwordController.clear();
                             },
@@ -183,7 +170,9 @@ class _LoginState extends State<Login> {
                           ),
 
                           ElevatedButton(
-                            onPressed: _navigateToRegistration,
+                            onPressed: () {
+                              Get.offAllNamed('/register');
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red.shade900,
                               minimumSize: const Size(double.infinity, 50),
@@ -196,11 +185,12 @@ class _LoginState extends State<Login> {
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white)),
                           ),
-                          const SizedBox(height: 40),
-                          Text(message,
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 238, 25, 10))),
-                          const SizedBox(height: inputSpacing),
+                          const SizedBox(height: 25),
+                          // Text(message,
+
+                          //     style: const TextStyle(
+                          //         color: Color.fromARGB(255, 238, 25, 10))),
+                          // const SizedBox(height: inputSpacing),
                         ],
                       ),
                     ),
