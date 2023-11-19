@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:proyectomovil/data/services/inventario_services.dart';
 import 'package:proyectomovil/ui/screens/home/panel_De_Control.dart';
-
 
 class IngresarMedicamento extends StatefulWidget {
   const IngresarMedicamento({super.key});
@@ -10,12 +12,13 @@ class IngresarMedicamento extends StatefulWidget {
 }
 
 class IngresarMedicamentoState extends State<IngresarMedicamento> {
-
   final TextEditingController nombreController = TextEditingController();
   final TextEditingController cantidadController = TextEditingController();
   final TextEditingController loteController = TextEditingController();
-  final TextEditingController fechaFabricacionController = TextEditingController();
-  final TextEditingController fechaCaducidadController = TextEditingController();
+  final TextEditingController fechaFabricacionController =
+      TextEditingController();
+  final TextEditingController fechaCaducidadController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -125,18 +128,24 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
-                      final nombre = nombreController.text;
-                      final cantidad = cantidadController.text;
-                      final lote = loteController.text;
-                      final fechaFabricacion = fechaFabricacionController.text;
-                      final fechaCaducidad = fechaCaducidadController.text;
+                      saveInventario(context);
+                      nombreController.clear();
+                      cantidadController.clear();
+                      loteController.clear();
+                      fechaFabricacionController.clear();
+                      fechaCaducidadController.clear();
 
-                      print('Nombre: $nombre');
-                      print('Cantidad: $cantidad');
-                      print('Lote: $lote');
-                      print('Fecha de Fabricación: $fechaFabricacion');
-                      print('Fecha de Caducidad: $fechaCaducidad');
+                      // final nombre = nombreController.text;
+                      // final cantidad = cantidadController.text;
+                      // final lote = loteController.text;
+                      // final fechaFabricacion = fechaFabricacionController.text;
+                      // final fechaCaducidad = fechaCaducidadController.text;
 
+                      // print('Nombre: $nombre');
+                      // print('Cantidad: $cantidad');
+                      // print('Lote: $lote');
+                      // print('Fecha de Fabricación: $fechaFabricacion');
+                      // print('Fecha de Caducidad: $fechaCaducidad');
 
                       Navigator.push(
                         context,
@@ -155,7 +164,8 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
                           borderRadius: BorderRadius.circular(
                               30)), // Hace que los bordes del botón sean redondeados
                     ),
-                    child: const Text('Guardar', style: TextStyle(fontSize: 20)),
+                    child:
+                        const Text('Guardar', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),
@@ -165,5 +175,22 @@ class IngresarMedicamentoState extends State<IngresarMedicamento> {
       ),
     );
   }
-}
 
+  void saveInventario(BuildContext context) async {
+    var nombre = nombreController.text;
+    var cantidad = cantidadController.text;
+    var lote = loteController.text;
+    var fechaFabricacion = fechaFabricacionController.text;
+    var fechaCaducidad = fechaCaducidadController.text;
+
+    await InventarioServices()
+        .saveServicio(nombre, cantidad, lote, fechaFabricacion, fechaCaducidad);
+  }
+
+  Future<void> guardarDatosAdicionalesEnFirestore(
+      User user, Map<String, dynamic> datos) async {
+    CollectionReference usuariosCollection =
+        FirebaseFirestore.instance.collection('inventario');
+    await usuariosCollection.doc(user.uid).set(datos);
+  }
+}

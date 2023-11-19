@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/consultarInventario.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/consultarMedicamentos.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/infoMedicamentos.dart';
 import 'package:get/get.dart';
+import 'package:proyectomovil/ui/screens/gestionInventario/consultarInventario.dart';
 import 'package:proyectomovil/ui/screens/gestionInventario/ingresarMedicamentos.dart';
 import 'package:proyectomovil/ui/screens/gestionPacientes/consultarEpicrisis.dart';
 import 'package:proyectomovil/ui/screens/gestionPacientes/ingresarPacientes.dart';
@@ -213,7 +211,7 @@ class MyDrawer extends StatelessWidget {
                     if (value == 'ingresarMaedicamento') {
                       Get.to(const IngresarMedicamento());
                     } else if (value == 'inventario') {
-                      Get.to(const ConsultarInventario());
+                      Get.to(const ConsultasInventario());
                     }
                   },
                 ),
@@ -239,7 +237,8 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Get.to(const Login()); // Agregar la lógica para cerrar la sesión del usuario
+              Get.to(
+                  const Login()); // Agregar la lógica para cerrar la sesión del usuario
             },
           ),
         ],
