@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/consultarInventario.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/ingresarMedicamentos.dart';
-import 'package:proyectomovil/ui/screens/gestionPacientes/consultarEpicrisis.dart';
-import 'package:proyectomovil/ui/screens/gestionPacientes/ingresarPacientes.dart';
+import 'package:proyectomovil/ui/screens/gestionInventario/Inventario/consultarInventario.dart';
+import 'package:proyectomovil/ui/screens/gestionInventario/ingresarMedicamento/ingresarMedicamentos.dart';
+import 'package:proyectomovil/ui/screens/gestionPacientes/epicrisisClinica/consultarEpicrisis.dart';
+import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/ingresarPacientes.dart';
 import 'package:proyectomovil/ui/screens/gestionUser/login.dart';
 
 // Asegúrate de importar el archivo correctamente
@@ -238,7 +238,7 @@ class MyDrawer extends StatelessWidget {
             ),
             onTap: () {
               Get.to(
-                  const Login()); // Agregar la lógica para cerrar la sesión del usuario
+                  Login()); // Agregar la lógica para cerrar la sesión del usuario
             },
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/IngresarCuadroClinicoParte1.dart';
 import 'package:flutter/services.dart';
+import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/IngresarCuadroClinicoParte1.dart';
 
 class ExpandingTextField extends StatefulWidget {
   final TextEditingController controller;

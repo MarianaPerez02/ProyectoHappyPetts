@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:proyectomovil/ui/screens/gestionPacientes/ingresarDatosPropietario.dart';
+import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/ingresarDatosPropietario.dart';
 
 
 class ExpandingTextField extends StatefulWidget {
@@ -24,6 +24,7 @@ class _ExpandingTextFieldState extends State<ExpandingTextField> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
+      // ignore: prefer_const_constructors
       constraints: BoxConstraints(
         maxHeight: 200.0, // Establece la altura máxima del cuadro de texto
       ),
