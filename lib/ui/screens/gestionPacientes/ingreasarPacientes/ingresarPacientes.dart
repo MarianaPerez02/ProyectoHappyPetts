@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:proyectomovil/ui/screens/gestionPacientes/ingresarDatosPropietario.dart';
+import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/ingresarDatosPropietario.dart';
 
 
 class ExpandingTextField extends StatefulWidget {

@@ -1,39 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/data/services/gestionUser/peticionesfirebaseuser.dart';
-import 'package:proyectomovil/ui/screens/screens.dart';
+import 'package:get/get.dart';
+import 'package:proyectomovil/domain/controllers/gestionUser/controlleruser.dart';
+import 'package:proyectomovil/ui/screens/gestionUser/login.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key});
-
-  @override
-  RegistrationScreenState createState() => RegistrationScreenState();
-}
-
-class RegistrationScreenState extends State<RegistrationScreen> {
-  final Peticioneslogin auth = Peticioneslogin();
+class Register extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  var usuarior;
-  Future<void> registro() async {
-    await Peticioneslogin.crearRegistroEmail(
-            emailController.text, passwordController.text)
-        .then((user) {
-      print(user);
-      if (user == '1' || user == '2') {
-        usuarior = 'Correo Ya Existe o Contraseña Debil';
-      } else {
-        usuarior = user.user.email;
-      }
-    });
-  }
+  Register({super.key});
 
-  String errorMessage = '';
+
   @override
   Widget build(BuildContext context) {
-    const double inputSpacing = 20.0;
+    ControlUserAuth cua = ControlUserAuth();
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -48,11 +29,6 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                   width: 300,
                   height: 300,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: Image.asset(),
-                // )
-
                 Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Card(
@@ -62,9 +38,18 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                       padding: const EdgeInsets.all(10),
                       width: double.infinity,
                       child: Column(
-                        
                         children: [
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'REGISTRAR USUARIO NUEVO',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,  // Aumenta el tamaño de la fuente aquí
+                            ),
+                          ),
+                          const SizedBox(height: 30),
                           TextField(
                             controller: nameController,
                             decoration: InputDecoration(
@@ -103,18 +88,15 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                             style: const TextStyle(fontSize: 15),
                           ),
-                          
+
                           const SizedBox(height: 40),
                           ElevatedButton(
                             onPressed: () {
-                              registro();
-                              nameController.clear();
-                              emailController.clear();
-                              passwordController.clear();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login()));
+                              cua.crearUser(emailController.text,
+                                  passwordController.text);
+                                  emailController.clear();
+                                  passwordController.clear();
+                                  nameController.clear();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red.shade900,
@@ -128,8 +110,29 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white)),
                           ),
-                          const SizedBox(
-                            height: 20,
+                           const SizedBox(height: 40),
+                           Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            // crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                '¿Ya tienes una cuenta?',
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(Login());
+                                },
+                                child: Text(
+                                  'Ingreso',
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.red.shade600),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -144,49 +147,3 @@ class RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 }
-
-
-
-
-// child: Container(
-//             width: double.infinity,
-//             padding: const EdgeInsets.all(20.0),
-//             color: Colors.white,
-//             child: Center(
-//               child: Column(
-//                 children: <Widget>[
-//                   Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Image.asset('assets/image/3.png'),
-//                   ),
-//                   const SizedBox(height: 20),
-//                   TextField(
-//                     controller: nameController,
-//                     decoration: const InputDecoration(labelText: 'Gmail'),
-//                   ),
-//                   TextField(
-//                     controller: passwordController,
-//                     decoration: const InputDecoration(labelText: 'Contraseña'),
-//                     obscureText: true,
-//                   ),
-//                   const SizedBox(height: 20),
-//                   ElevatedButton(
-//                     onPressed: () {
-//                        registro();
-//                       nameController.clear();
-//                       passwordController.clear();
-//                       Navigator.push(
-//                           context,
-//                           MaterialPageRoute(
-//                               builder: (context) => const Login()));
-//                     },
-//                     style:
-//                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
-//                     child: const Text('Registrarse',
-//                         style: TextStyle(color: Colors.white)),
-//                   ),
-//                   Text(errorMessage, style: const TextStyle(color: Colors.red)),
-//                 ],
-//               ),
-//             ),
-//           ),

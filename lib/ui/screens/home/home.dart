@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) 
   {
     Future.delayed(const Duration(seconds: 3),()async{
-      await Get.to(const Login());
+      await Get.to(Login());
     });
     return Scaffold(      
       body: Stack(fit: StackFit.expand,

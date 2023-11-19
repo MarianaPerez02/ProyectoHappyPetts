@@ -77,8 +77,8 @@ class EditarEpicrisis extends StatelessWidget {
                   // Aquí puedes implementar la lógica para guardar los cambios
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
-                  onPrimary: Colors.white,
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
                 ),
                 child: const Text('Guardar'),
               ),

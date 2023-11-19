@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyectomovil/data/services/inventario_services.dart';
-import 'package:proyectomovil/ui/screens/home/panel_De_Control.dart';
+import 'package:proyectomovil/ui/screens/panelDeControl/panel_De_Control.dart';
 
 class IngresarMedicamento extends StatefulWidget {
   const IngresarMedicamento({super.key});
