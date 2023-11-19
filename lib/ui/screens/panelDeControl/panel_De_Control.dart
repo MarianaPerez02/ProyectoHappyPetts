@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/Inventario/consultarInventario.dart';
-import 'package:get/get.dart';
-import 'package:proyectomovil/ui/screens/gestionInventario/ingresarMedicamento/ingresarMedicamentos.dart';
-import 'package:proyectomovil/ui/screens/gestionPacientes/epicrisisClinica/consultarEpicrisis.dart';
-import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/ingresarPacientes.dart';
-import 'package:proyectomovil/ui/screens/gestionUser/login.dart';
 import 'package:proyectomovil/ui/screens/panelDeControl/witgeth/MyBody.dart';
 import 'package:proyectomovil/ui/screens/panelDeControl/witgeth/MyDrawer.dart';
 

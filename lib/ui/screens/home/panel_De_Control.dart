@@ -238,7 +238,7 @@ class MyDrawer extends StatelessWidget {
             ),
             onTap: () {
               Get.to(
-                   Login()); // Agregar la lógica para cerrar la sesión del usuario
+                  Login()); // Agregar la lógica para cerrar la sesión del usuario
             },
           ),
         ],

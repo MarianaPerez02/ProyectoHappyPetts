@@ -12,7 +12,7 @@ class EditarMedicamento extends StatelessWidget {
     final Inventario? servicio = Get.arguments as Inventario?;
     return Scaffold(
       appBar: AppBar(
-        title: Text(servicio != null ? 'Editar Servicio' : 'Agregar Servicio'),
+        title: Text(servicio != null ? 'Editar Medicamento' : 'Agregar Servicio'),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),

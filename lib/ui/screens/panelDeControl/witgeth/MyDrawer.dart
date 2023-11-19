@@ -114,7 +114,7 @@ class MyDrawer extends StatelessWidget {
                           if (value == 'ingresarMaedicamento') {
                             Get.to(const IngresarMedicamento());
                           } else if (value == 'inventario') {
-                            Get.to(const ConsultarInventario());
+                            Get.to(const ConsultasInventario());
                           }
                         },
                       ),

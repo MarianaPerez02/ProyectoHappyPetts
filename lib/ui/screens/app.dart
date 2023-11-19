@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proyectomovil/ui/screens/gestionInventario/Inventario/consultarInventario.dart';
 import 'package:proyectomovil/ui/screens/gestionInventario/editarMedicamento.dart';
 import 'package:proyectomovil/ui/screens/gestionInventario/ingresarMedicamento/ingresarMedicamentos.dart';
 import 'package:proyectomovil/ui/screens/gestionUser/register.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => Register(),
         '/editarMedicamento': (context) => const EditarMedicamento(),
         '/agregarMedicamento': (context) => const IngresarMedicamento(),
+        '/consultarMedicamentos': (context) => const ConsultasInventario(),
       },
     );
   }
