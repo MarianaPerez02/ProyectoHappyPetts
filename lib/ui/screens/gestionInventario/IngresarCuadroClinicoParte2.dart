@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyectomovil/ui/screens/home/panel_De_Control.dart';
 
 class IngresarDatosCuadroClinicoParte2 extends StatefulWidget {
   const IngresarDatosCuadroClinicoParte2({Key? key}) : super(key: key);
@@ -110,11 +111,6 @@ class _IngresarDatosCuadroClinicoParte2State
                         _selectDate(context, fechaSeguimientoController),
                   ),
                   const SizedBox(height: 16),
-                  ExpandingTextField(
-                    controller: firmaVeterinarioController,
-                    labelText: 'Firma de Veterinario',
-                  ),
-                  const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
                       final evolucion = evolucionController.text;
@@ -124,8 +120,7 @@ class _IngresarDatosCuadroClinicoParte2State
                       final cuidados = cuidadosController.text;
                       final fechaSalida = fechaSalidaController.text;
                       final fechaSeguimiento = fechaSeguimientoController.text;
-                      final firmaVeterinario =
-                          firmaVeterinarioController.text;
+                      
 
                       print('Evolución: $evolucion');
                       print('Diagnóstico Final: $diagnosticoFinal');
@@ -134,7 +129,13 @@ class _IngresarDatosCuadroClinicoParte2State
                       print('Cuidados: $cuidados');
                       print('Fecha de Salida: $fechaSalida');
                       print('Fecha de Seguimiento: $fechaSeguimiento');
-                      print('Firma de Veterinario: $firmaVeterinario');
+                      
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PanelDeControl(),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
