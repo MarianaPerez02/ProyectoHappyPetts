@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:proyectomovil/ui/screens/screens.dart';
-
 
 class IngresarDatosCuadroClinicoParte2 extends StatefulWidget {
-  const IngresarDatosCuadroClinicoParte2({super.key});
+  const IngresarDatosCuadroClinicoParte2({Key? key}) : super(key: key);
 
   @override
-  State<IngresarDatosCuadroClinicoParte2> createState() => IngresarDatosCuadroClinicoParte2State();
+  _IngresarDatosCuadroClinicoParte2State createState() =>
+      _IngresarDatosCuadroClinicoParte2State();
 }
 
-class IngresarDatosCuadroClinicoParte2State extends State<IngresarDatosCuadroClinicoParte2> {
-
+class _IngresarDatosCuadroClinicoParte2State
+    extends State<IngresarDatosCuadroClinicoParte2> {
   final TextEditingController evolucionController = TextEditingController();
-  final TextEditingController diagnosticoFinalController = TextEditingController();
-  final TextEditingController medicamentosRecomendadosController = TextEditingController();
+  final TextEditingController diagnosticoFinalController =
+      TextEditingController();
+  final TextEditingController medicamentosRecomendadosController =
+      TextEditingController();
   final TextEditingController cuidadosController = TextEditingController();
   final TextEditingController fechaSalidaController = TextEditingController();
-  final TextEditingController fechaSeguimientoController = TextEditingController();
+  final TextEditingController fechaSeguimientoController =
+      TextEditingController();
   final TextEditingController firmaVeterinarioController = TextEditingController();
+
+  DateTime? selectedDate;
+
+  Future<void> _selectDate(BuildContext context, TextEditingController controller) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        controller.text = "${picked.toLocal()}".split(' ')[0];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,95 +77,42 @@ class IngresarDatosCuadroClinicoParte2State extends State<IngresarDatosCuadroCli
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),
-                  TextField(
+                  ExpandingTextField(
                     controller: evolucionController,
-                    decoration: InputDecoration(
-                      labelText: 'Evolución',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    labelText: 'Evolución',
                   ),
                   const SizedBox(height: 16),
-                  TextField(
+                  ExpandingTextField(
                     controller: diagnosticoFinalController,
-                    decoration: InputDecoration(
-                      labelText: 'Diagnóstico Final',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    labelText: 'Diagnóstico Final',
                   ),
                   const SizedBox(height: 16),
-                  TextField(
+                  ExpandingTextField(
                     controller: medicamentosRecomendadosController,
-                    decoration: InputDecoration(
-                      labelText: 'Medicamentos Recomendados',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    labelText: 'Medicamentos Recomendados',
                   ),
                   const SizedBox(height: 16),
-                  TextField(
+                  ExpandingTextField(
                     controller: cuidadosController,
-                    decoration: InputDecoration(
-                      labelText: 'Cuidados',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    labelText: 'Cuidados',
                   ),
                   const SizedBox(height: 16),
-                  TextField(
+                  DatePickerField(
                     controller: fechaSalidaController,
-                    decoration: InputDecoration(
-                      labelText: 'Fecha de Salida',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    labelText: 'Fecha de Salida',
+                    onTap: () => _selectDate(context, fechaSalidaController),
                   ),
                   const SizedBox(height: 16),
-                  TextField(
+                  DatePickerField(
                     controller: fechaSeguimientoController,
-                    decoration: InputDecoration(
-                      labelText: 'Fecha de Seguimiento',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    labelText: 'Fecha de Seguimiento',
+                    onTap: () =>
+                        _selectDate(context, fechaSeguimientoController),
                   ),
                   const SizedBox(height: 16),
-                  TextField(
+                  ExpandingTextField(
                     controller: firmaVeterinarioController,
-                    decoration: InputDecoration(
-                      labelText: 'Firma de Veterinario',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey.shade400,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    labelText: 'Firma de Veterinario',
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
@@ -158,7 +124,8 @@ class IngresarDatosCuadroClinicoParte2State extends State<IngresarDatosCuadroCli
                       final cuidados = cuidadosController.text;
                       final fechaSalida = fechaSalidaController.text;
                       final fechaSeguimiento = fechaSeguimientoController.text;
-                      final firmaVeterinario = firmaVeterinarioController.text;
+                      final firmaVeterinario =
+                          firmaVeterinarioController.text;
 
                       print('Evolución: $evolucion');
                       print('Diagnóstico Final: $diagnosticoFinal');
@@ -168,23 +135,17 @@ class IngresarDatosCuadroClinicoParte2State extends State<IngresarDatosCuadroCli
                       print('Fecha de Salida: $fechaSalida');
                       print('Fecha de Seguimiento: $fechaSeguimiento');
                       print('Firma de Veterinario: $firmaVeterinario');
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PanelDeControl(),
-                        ),
-                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 70,
-                          vertical: 20), // Ajusta el tamaño del botón
+                        horizontal: 70,
+                        vertical: 20,
+                      ),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              30)), // Hace que los bordes del botón sean redondeados
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
                     child: const Text('Guardar', style: TextStyle(fontSize: 20)),
                   ),
@@ -198,4 +159,65 @@ class IngresarDatosCuadroClinicoParte2State extends State<IngresarDatosCuadroCli
   }
 }
 
+class ExpandingTextField extends StatefulWidget {
+  final TextEditingController controller;
+  final String labelText;
 
+  ExpandingTextField({
+    required this.controller,
+    required this.labelText,
+  });
+
+  @override
+  _ExpandingTextFieldState createState() => _ExpandingTextFieldState();
+}
+
+class _ExpandingTextFieldState extends State<ExpandingTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: widget.controller,
+      maxLines: null,
+      keyboardType: TextInputType.multiline,
+      decoration: InputDecoration(
+        labelText: widget.labelText,
+        labelStyle: const TextStyle(color: Colors.white),
+        filled: true,
+        fillColor: Colors.grey.shade400,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    );
+  }
+}
+
+class DatePickerField extends StatelessWidget {
+  final TextEditingController controller;
+  final String labelText;
+  final VoidCallback onTap;
+
+  DatePickerField({
+    required this.controller,
+    required this.labelText,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      onTap: onTap,
+      readOnly: true,
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: const TextStyle(color: Colors.white),
+        filled: true,
+        fillColor: Colors.grey.shade400,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    );
+  }
+}
