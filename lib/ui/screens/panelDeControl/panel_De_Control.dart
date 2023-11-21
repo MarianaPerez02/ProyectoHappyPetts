@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:proyectomovil/ui/screens/panelDeControl/witgeth/MyBody.dart';
 import 'package:proyectomovil/ui/screens/panelDeControl/witgeth/MyDrawer.dart';
 
-
 // Asegúrate de importar el archivo correctamente
 
 class PanelDeControl extends StatelessWidget {
@@ -44,4 +43,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
