@@ -167,7 +167,7 @@ class IngresarDatosCuadroClinicoParte1State
 
                                 widget.paciente.sintomas = sintomas;
                                 widget.paciente.examenFisico = examenFisico;
-                                widget.paciente.medicamentoRecomendado = medicamentos;
+                                widget.paciente.medicamentos = medicamentos;
                                 widget.paciente.dosificacion = dosificacion;
                                 widget.paciente.viaAdmin = viaAdministracion;
                                 widget.paciente.descProcedimiento = descripcionProcedimiento;

@@ -1,29 +1,30 @@
 class Paciente {
-   String id;
-   String nombre;
-   String especie;
-   String edad;
-   String sexo;
-   String peso;
-   String fechaIngreso;
-   String nPropietario;
-   String aPropietario;
-   String identPropietario;
-   String direccionPropietario;
-   String telefonoPropietario;
-   String emailPropietario;
-   String sintomas;
-    String examenFisico;
-    String medicamentos;
-    String dosificacion;
-    String viaAdmin;
-    String descProcedimiento;
-    String evolucion;
-    String diagnostico;
-    String medicamentoRecomendado;
-    String cuidados;
-    String fechasalida;
-    String fechaseguimiento;
+  String id;
+  String nombre;
+  String especie;
+  String edad;
+  String sexo;
+  String peso;
+  String fechaIngreso;
+  String nPropietario;
+  String aPropietario;
+  String identPropietario;
+  String direccionPropietario;
+  String telefonoPropietario;
+  String emailPropietario;
+  String sintomas;
+  String examenFisico;
+  String medicamentos;
+  String dosificacion;
+  String viaAdmin;
+  String descProcedimiento;
+  String evolucion;
+  String diagnostico;
+  String medicamentoRecomendado;
+  String cuidados;
+  String fechasalida;
+  String fechaseguimiento;
+  String imagenUrl;
 
   Paciente({
     required this.id,
@@ -51,6 +52,7 @@ class Paciente {
     required this.cuidados,
     required this.fechasalida,
     required this.fechaseguimiento,
+    required this.imagenUrl
   });
 
   factory Paciente.desdeDoc(String id, Map<String, dynamic> json) {
@@ -80,6 +82,7 @@ class Paciente {
       cuidados: json["cuidados"] ?? '',
       fechasalida: json["fechasalida"] ?? '',
       fechaseguimiento: json["fechaseguimiento"] ?? '',
+      imagenUrl: json["imagen"]
     );
   }
 
@@ -110,6 +113,7 @@ class Paciente {
       "cuidados": cuidados,
       "fechasalida": fechasalida,
       "fechaseguimiento": fechaseguimiento,
+      "imagen": imagenUrl
     };
   }
 }

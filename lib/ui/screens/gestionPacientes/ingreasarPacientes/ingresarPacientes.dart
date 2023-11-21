@@ -231,6 +231,7 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
             cuidados: '',
             fechasalida: '',
             fechaseguimiento: '',
+            imagenUrl: ''
 
 
           );
