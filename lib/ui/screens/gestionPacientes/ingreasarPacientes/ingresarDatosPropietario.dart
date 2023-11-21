@@ -152,13 +152,12 @@ class _IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                       final direccion = direccionController.text;
                       final telefono = telefonoController.text;
                       final email = emailController.text;
-                      widget.paciente.nombre = nombre;
+                      widget.paciente.nPropietario = nombre;
                       widget.paciente.aPropietario = apellido;
                       widget.paciente.identPropietario = identificacion;
                       widget.paciente.direccionPropietario = direccion;
                       widget.paciente.telefonoPropietario = telefono;
                       widget.paciente.emailPropietario = email;
-
 
                       print('Nombre: $nombre');
                       print('Apellido: $apellido');
@@ -171,7 +170,9 @@ class _IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                 IngresarDatosCuadroClinicoParte1(paciente: widget.paciente,)),
+                                IngresarDatosCuadroClinicoParte1(
+                                  paciente: widget.paciente,
+                                )),
                       );
                     },
                     style: ElevatedButton.styleFrom(
