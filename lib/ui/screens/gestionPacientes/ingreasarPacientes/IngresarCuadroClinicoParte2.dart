@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:proyectomovil/data/services/pacienteServices.dart';
+import 'package:proyectomovil/domain/models/paciente.dart';
 import 'package:proyectomovil/ui/screens/home/panel_De_Control.dart';
 
 class IngresarDatosCuadroClinicoParte2 extends StatefulWidget {
-  const IngresarDatosCuadroClinicoParte2({Key? key}) : super(key: key);
+  final Paciente paciente;
+
+  const IngresarDatosCuadroClinicoParte2({super.key, required this.paciente});
 
   @override
+  // ignore: library_private_types_in_public_api
   _IngresarDatosCuadroClinicoParte2State createState() =>
       _IngresarDatosCuadroClinicoParte2State();
 }
@@ -20,11 +25,13 @@ class _IngresarDatosCuadroClinicoParte2State
   final TextEditingController fechaSalidaController = TextEditingController();
   final TextEditingController fechaSeguimientoController =
       TextEditingController();
-  final TextEditingController firmaVeterinarioController = TextEditingController();
+  final TextEditingController firmaVeterinarioController =
+      TextEditingController();
 
   DateTime? selectedDate;
 
-  Future<void> _selectDate(BuildContext context, TextEditingController controller) async {
+  Future<void> _selectDate(
+      BuildContext context, TextEditingController controller) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -112,7 +119,7 @@ class _IngresarDatosCuadroClinicoParte2State
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       final evolucion = evolucionController.text;
                       final diagnosticoFinal = diagnosticoFinalController.text;
                       final medicamentosRecomendados =
@@ -120,7 +127,41 @@ class _IngresarDatosCuadroClinicoParte2State
                       final cuidados = cuidadosController.text;
                       final fechaSalida = fechaSalidaController.text;
                       final fechaSeguimiento = fechaSeguimientoController.text;
-                      
+
+                      // Crear un objeto Paciente con la información del cuadro clínico final
+                      Paciente cuadroClinicoFinal = Paciente(
+                        id: widget.paciente.id,
+                        nombre: widget.paciente.nombre,
+                        especie: widget.paciente.especie,
+                        edad: widget.paciente.edad,
+                        sexo: widget.paciente.sexo,
+                        peso: widget.paciente.peso,
+                        fechaIngreso: widget.paciente.fechaIngreso,
+                        nPropietario: widget.paciente.nPropietario,
+                        aPropietario: widget.paciente.aPropietario,
+                        identPropietario: widget.paciente.identPropietario,
+                        direccionPropietario:
+                            widget.paciente.direccionPropietario,
+                        telefonoPropietario:
+                            widget.paciente.telefonoPropietario,
+                        emailPropietario: widget.paciente.emailPropietario,
+                        sintomas: widget.paciente.sintomas,
+                        examenFisico: widget.paciente.examenFisico,
+                        medicamentos: widget.paciente.medicamentos,
+                        dosificacion: widget.paciente.dosificacion,
+                        viaAdmin: widget.paciente.viaAdmin,
+                        descProcedimiento: widget.paciente.descProcedimiento,
+                        evolucion: evolucion,
+                        diagnostico: diagnosticoFinal,
+                        medicamentoRecomendado: medicamentosRecomendados,
+                        cuidados: cuidados,
+                        fechasalida: fechaSalida,
+                        fechaseguimiento: fechaSeguimiento,
+                      );
+
+                      // Enviar los datos a Firebase
+                      await PacienteServices()
+                          .enviarDatosAFirebase(cuadroClinicoFinal);
 
                       print('Evolución: $evolucion');
                       print('Diagnóstico Final: $diagnosticoFinal');
@@ -129,7 +170,8 @@ class _IngresarDatosCuadroClinicoParte2State
                       print('Cuidados: $cuidados');
                       print('Fecha de Salida: $fechaSalida');
                       print('Fecha de Seguimiento: $fechaSeguimiento');
-                      
+
+                      // ignore: use_build_context_synchronously
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -148,7 +190,8 @@ class _IngresarDatosCuadroClinicoParte2State
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    child: const Text('Guardar', style: TextStyle(fontSize: 20)),
+                    child:
+                        const Text('Guardar', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),

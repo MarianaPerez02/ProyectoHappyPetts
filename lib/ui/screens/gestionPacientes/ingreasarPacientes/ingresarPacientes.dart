@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:proyectomovil/domain/models/paciente.dart';
 import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/ingresarDatosPropietario.dart';
 
 
@@ -198,23 +199,54 @@ class _IngresarPacienteState extends State<IngresarPaciente> {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      final nombrePaciente = nombrePacienteController.text;
-                      final edad = edadController.text;
-                      final peso = pesoController.text;
-                      final fechaIngreso = fechaIngresoController.text;
+                    final nombrePaciente = nombrePacienteController.text;
+          final edad = edadController.text;
+          final peso = pesoController.text;
+          final fechaIngreso = fechaIngresoController.text;
 
-                      print('Nombre del Paciente: $nombrePaciente');
-                      print('Especie: $especieValue');
-                      print('Edad: $edad');
-                      print('Sexo: $sexoValue');
-                      print('Peso: $peso');
-                      print('Fecha de Ingreso: $fechaIngreso');
+          // Crear un objeto Paciente con la información del primer formulario
+          Paciente paciente = Paciente(
+            id: '', 
+            nombre: nombrePaciente,
+            especie: especieValue,
+            edad: edad,
+            sexo: sexoValue,
+            peso: peso,
+            fechaIngreso: fechaIngreso,
+            nPropietario: '',
+            aPropietario: '',
+            identPropietario: '',
+            direccionPropietario: '',
+            telefonoPropietario: '',
+            emailPropietario: '',
+            sintomas: '',
+            examenFisico: '',
+            medicamentos: '',
+            dosificacion: '',
+            viaAdmin: '',
+            descProcedimiento: '',
+            evolucion: '',
+            diagnostico: '',
+            medicamentoRecomendado: '',
+            cuidados: '',
+            fechasalida: '',
+            fechaseguimiento: '',
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const IngresarDatosPropietario()),
-                      );
+
+          );
+
+          // Imprimir información para verificar
+          print('Datos del Paciente:');
+          print(paciente.toJson());
+
+          // Navegar a la siguiente pantalla y pasar el objeto Paciente
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => IngresarDatosPropietario(paciente: paciente),
+            ),
+          );
+
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,

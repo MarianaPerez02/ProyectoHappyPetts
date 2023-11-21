@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:proyectomovil/domain/models/paciente.dart';
 import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/IngresarCuadroClinicoParte1.dart';
 
 class ExpandingTextField extends StatefulWidget {
@@ -53,7 +54,9 @@ class _ExpandingTextFieldState extends State<ExpandingTextField> {
 }
 
 class IngresarDatosPropietario extends StatefulWidget {
-  const IngresarDatosPropietario({Key? key}) : super(key: key);
+  final Paciente paciente;
+
+  const IngresarDatosPropietario({super.key, required this.paciente});
 
   @override
   State<IngresarDatosPropietario> createState() =>
@@ -63,7 +66,8 @@ class IngresarDatosPropietario extends StatefulWidget {
 class _IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
   final TextEditingController nombreController = TextEditingController();
   final TextEditingController apellidoController = TextEditingController();
-  final TextEditingController identificacionController = TextEditingController();
+  final TextEditingController identificacionController =
+      TextEditingController();
   final TextEditingController direccionController = TextEditingController();
   final TextEditingController telefonoController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -72,8 +76,8 @@ class _IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme:
-            const IconThemeData(color: Colors.black), // Cambiar el color de la flecha de retroceso
+        iconTheme: const IconThemeData(
+            color: Colors.black), // Cambiar el color de la flecha de retroceso
         backgroundColor: Colors.white,
         title: Image.asset(
           'assets/image/6.png', // Asegúrate de reemplazar 'assets/imagen3.png' con la ruta de tu imagen.
@@ -148,6 +152,13 @@ class _IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                       final direccion = direccionController.text;
                       final telefono = telefonoController.text;
                       final email = emailController.text;
+                      widget.paciente.nombre = nombre;
+                      widget.paciente.aPropietario = apellido;
+                      widget.paciente.identPropietario = identificacion;
+                      widget.paciente.direccionPropietario = direccion;
+                      widget.paciente.telefonoPropietario = telefono;
+                      widget.paciente.emailPropietario = email;
+
 
                       print('Nombre: $nombre');
                       print('Apellido: $apellido');
@@ -156,11 +167,11 @@ class _IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                       print('Teléfono: $telefono');
                       print('Email: $email');
 
-                       Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                const IngresarDatosCuadroClinicoParte1()),
+                                 IngresarDatosCuadroClinicoParte1(paciente: widget.paciente,)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -170,10 +181,11 @@ class _IngresarDatosPropietarioState extends State<IngresarDatosPropietario> {
                           horizontal: 60,
                           vertical: 20), // Ajusta el tamaño del botón
                       shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(30)), // Hace que los bordes del botón sean redondeados
+                          borderRadius: BorderRadius.circular(
+                              30)), // Hace que los bordes del botón sean redondeados
                     ),
-                    child: const Text('Continuar', style: TextStyle(fontSize: 20)),
+                    child:
+                        const Text('Continuar', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),

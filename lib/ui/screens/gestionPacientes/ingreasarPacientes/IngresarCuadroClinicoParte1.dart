@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:proyectomovil/domain/models/paciente.dart';
 import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/IngresarCuadroClinicoParte2.dart';
 
 class IngresarDatosCuadroClinicoParte1 extends StatefulWidget {
-  const IngresarDatosCuadroClinicoParte1({super.key});
+  final Paciente paciente;
+  const IngresarDatosCuadroClinicoParte1({super.key, required this.paciente});
 
   @override
   State<IngresarDatosCuadroClinicoParte1> createState() =>
@@ -33,7 +35,6 @@ class IngresarDatosCuadroClinicoParte1State
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        
         child: SingleChildScrollView(
           child: SafeArea(
             child: Container(
@@ -164,6 +165,13 @@ class IngresarDatosCuadroClinicoParte1State
                                 final descripcionProcedimiento =
                                     descripcionProcedimientoController.text;
 
+                                widget.paciente.sintomas = sintomas;
+                                widget.paciente.examenFisico = examenFisico;
+                                widget.paciente.medicamentoRecomendado = medicamentos;
+                                widget.paciente.dosificacion = dosificacion;
+                                widget.paciente.viaAdmin = viaAdministracion;
+                                widget.paciente.descProcedimiento = descripcionProcedimiento;
+
                                 print('Síntomas: $sintomas');
                                 print('Examen Físico: $examenFisico');
                                 print('Medicamentos: $medicamentos');
@@ -177,7 +185,7 @@ class IngresarDatosCuadroClinicoParte1State
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const IngresarDatosCuadroClinicoParte2()),
+                                           IngresarDatosCuadroClinicoParte2(paciente: widget.paciente,)),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
