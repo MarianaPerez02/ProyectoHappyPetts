@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:proyectomovil/domain/models/paciente.dart';
 import 'package:proyectomovil/ui/screens/gestionPacientes/ingreasarPacientes/IngresarCuadroClinicoParte2.dart';
 
 class IngresarDatosCuadroClinicoParte1 extends StatefulWidget {
-  const IngresarDatosCuadroClinicoParte1({super.key});
+  final Paciente paciente;
+  const IngresarDatosCuadroClinicoParte1({super.key, required this.paciente});
 
   @override
   State<IngresarDatosCuadroClinicoParte1> createState() => IngresarDatosCuadroClinicoParte1State();
@@ -154,7 +156,7 @@ class IngresarDatosCuadroClinicoParte1State extends State<IngresarDatosCuadroCli
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const IngresarDatosCuadroClinicoParte2()),
+                                builder: (context) =>  IngresarDatosCuadroClinicoParte2(paciente: widget.paciente,)),
                           );
                         },
                         style: ElevatedButton.styleFrom(

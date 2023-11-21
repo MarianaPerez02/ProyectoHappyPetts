@@ -1,29 +1,29 @@
 class Paciente {
-  final String id;
-  final String nombre;
-  final String especie;
-  final String edad;
-  final String sexo;
-  final String peso;
-  final String pesoIngreso;
-  final String nPropietario;
-  final String aPropietario;
-  final String identPropietario;
-  final String direccionPropietario;
-  final String telefonoPropietario;
-  final String emailPropietario;
-  final String sintomas;
-  final String examenFisico;
-  final String medicamentos;
-  final String dosificacion;
-  final String viaAdmin;
-  final String descProcedimiento;
-  final String evolucion;
-  final String diagnostico;
-  final String medicamento;
-  final String cuidados;
-  final String fechasalida;
-  final String fechaseguimiento;
+   String id;
+   String nombre;
+   String especie;
+   String edad;
+   String sexo;
+   String peso;
+   String fechaIngreso;
+   String nPropietario;
+   String aPropietario;
+   String identPropietario;
+   String direccionPropietario;
+   String telefonoPropietario;
+   String emailPropietario;
+   String sintomas;
+    String examenFisico;
+    String medicamentos;
+    String dosificacion;
+    String viaAdmin;
+    String descProcedimiento;
+    String evolucion;
+    String diagnostico;
+    String medicamentoRecomendado;
+    String cuidados;
+    String fechasalida;
+    String fechaseguimiento;
 
   Paciente({
     required this.id,
@@ -32,7 +32,7 @@ class Paciente {
     required this.edad,
     required this.sexo,
     required this.peso,
-    required this.pesoIngreso,
+    required this.fechaIngreso,
     required this.nPropietario,
     required this.aPropietario,
     required this.identPropietario,
@@ -47,7 +47,7 @@ class Paciente {
     required this.descProcedimiento,
     required this.evolucion,
     required this.diagnostico,
-    required this.medicamento,
+    required this.medicamentoRecomendado,
     required this.cuidados,
     required this.fechasalida,
     required this.fechaseguimiento,
@@ -61,7 +61,7 @@ class Paciente {
       edad: json["edad"] ?? '',
       sexo: json["sexo"] ?? '',
       peso: json["peso"] ?? '',
-      pesoIngreso: json["pesoIngreso"] ?? '',
+      fechaIngreso: json["fechaIngreso"] ?? '',
       nPropietario: json["nPropietario"] ?? '',
       aPropietario: json["aPropietario"] ?? '',
       identPropietario: json["identPropietario"] ?? '',
@@ -76,7 +76,7 @@ class Paciente {
       descProcedimiento: json["descProcedimiento"] ?? '',
       evolucion: json["evolucion"] ?? '',
       diagnostico: json["diagnostico"] ?? '',
-      medicamento: json["medicamento"] ?? '',
+      medicamentoRecomendado: json["medicamentoRecomendado"] ?? '',
       cuidados: json["cuidados"] ?? '',
       fechasalida: json["fechasalida"] ?? '',
       fechaseguimiento: json["fechaseguimiento"] ?? '',
@@ -91,7 +91,7 @@ class Paciente {
       "edad": edad,
       "sexo": sexo,
       "peso": peso,
-      "pesoIngreso": pesoIngreso,
+      "fechaIngreso": fechaIngreso,
       "nPropietario": nPropietario,
       "aPropietario": aPropietario,
       "identPropietario": identPropietario,
@@ -106,7 +106,7 @@ class Paciente {
       "descProcedimiento": descProcedimiento,
       "evolucion": evolucion,
       "diagnostico": diagnostico,
-      "medicamento": medicamento,
+      "medicamento": medicamentoRecomendado,
       "cuidados": cuidados,
       "fechasalida": fechasalida,
       "fechaseguimiento": fechaseguimiento,
